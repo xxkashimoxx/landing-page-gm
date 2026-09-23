@@ -3347,7 +3347,7 @@ select.form-input {
 
                         <p>Converse sobre as áreas que deseja cuidar e suas expectativas.</p>
 
-                        <button class="link-action" onclick="openBooking('Preenchedores')">
+                        <button class="link-action" onclick="openBooking('Preenchimento labial')">
 
                           Solicitar avaliação ↗
 
@@ -3495,7 +3495,7 @@ select.form-input {
     target="_blank" 
     rel="noopener noreferrer"
     aria-label="Conversar no WhatsApp"
-    href="https://wa.me/5521984249995?text=Olá!+Vim+pelo+site+da+Dra.+Goreti+Magalhães.">
+    href="https://wa.me/5521986083241?text=Olá!+Vim+pelo+site+da+Dra.+Goreti+Magalhães.">
     <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3Z"/><path d="M8.2 6.4c.2-.4.4-.4.7-.4h.6c.2 0 .5.1.6.5l.9 2.2c.1.3.1.5-.1.8l-.7.9c-.1.2-.2.3 0 .6.3.6 1.2 1.9 2.7 2.7.4.2.6.3.8 0l.9-1.1c.2-.3.4-.3.7-.2l2.2 1c.3.1.5.2.5.4.1.3.1 1.5-.4 1.9-.5.5-1.3.7-2.2.4-1-.3-2.2-.8-3.8-2.1-1.8-1.5-3-3.3-3.4-4.2-.4-.9-.4-1.6 0-2.2Z" fill="currentColor" stroke="none"/></svg>
   </a>
 
@@ -3503,7 +3503,7 @@ select.form-input {
   <div class="modal" id="bookingModal">
     <div class="modal__overlay" onclick="closeBooking()"></div>
     <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal__close" onclick="closeBooking()" aria-label="Fechar formulário">×</button>
+      <button type="button" class="modal__close" onclick="closeBooking()" aria-label="Fechar formulário">×</button>
       
       <span class="eyebrow">Agende sua avaliação</span>
       <h2 id="modalTitle" class="modal__title">Conte o essencial.<br><em>A equipe cuida do resto.</em></h2>
@@ -3542,10 +3542,9 @@ select.form-input {
             <option>Laser Sculpting</option>
             <option>Botox</option>
             <option>Harmonização facial</option>
-            <option>Preenchedores</option>
+            <option>Preenchimento labial</option>
             <option>Bioestimuladores</option>
-            <option>Rejuvenescimento facial</option>
-            <option>Pele madura</option>
+            <option>Harmonização glútea</option>
           </select>
         </div>
 
@@ -4045,7 +4044,7 @@ const interestInput = document.getElementById('interest');
 const timeInput = document.getElementById('time');
 
 // Configuração
-const WHATSAPP_NUMBER = '5521984249995';
+const WHATSAPP_NUMBER = '5521986083241';
 const FORM_CONFIG = {
   nameMinLength: 2,
   phoneMinLength: 10
