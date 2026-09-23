@@ -1808,13 +1808,20 @@ section {
 }
 
 /* Fotos reais dos procedimentos: corte editorial e assinatura GM discreta. */
-.treatment-card__media--botox img {
-  object-position: center 44%;
-}
-
 .treatment-card__media--photo img {
   object-position: center center;
   filter: saturate(0.94) contrast(1.02);
+}
+
+.treatment-card__media--botox img {
+  object-fit: contain;
+  object-position: center;
+  filter: none;
+  background: var(--color-background-highlight);
+}
+
+.treatment-card__media--botox::after {
+  right: calc(15.5% + 14px);
 }
 
 .treatment-card__media--full {
@@ -3096,7 +3103,7 @@ select.form-input {
 
                         <div class="treatment-card__media treatment-card__media--photo treatment-card__media--botox">
 
-                          <img src="botox-23297.svg" alt="Aplicação de Botox realizada pela Dra. Goreti" loading="lazy" decoding="async">
+                          <img src="botox-23297-navy.svg" alt="Aplicação de Botox realizada pela Dra. Goreti" loading="lazy" decoding="async">
 
                         </div>
 
