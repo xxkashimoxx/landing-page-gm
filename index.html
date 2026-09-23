@@ -1813,6 +1813,19 @@ section {
   filter: saturate(0.94) contrast(1.02);
 }
 
+.treatment-card__media--full {
+  background: #edf2f6;
+}
+
+.treatment-card__media--full img {
+  object-fit: contain;
+  filter: none;
+}
+
+.treatment-card__media--full::after {
+  display: none;
+}
+
 .treatment-card__media--photo::after {
   content: "";
   position: absolute;
@@ -3203,9 +3216,9 @@ select.form-input {
 
                       <summary class="treatment-card__summary">
 
-                        <div class="treatment-card__media treatment-card__media--photo">
+                        <div class="treatment-card__media treatment-card__media--photo treatment-card__media--full">
 
-                          <img src="bioestimuladores-23184.svg" alt="Aplicação de bioestimulador realizada pela Dra. Goreti" loading="lazy" decoding="async">
+                          <img src="bioestimuladores-23258.svg" alt="Aplicação de bioestimulador realizada pela Dra. Goreti" loading="lazy" decoding="async">
 
                         </div>
 
