@@ -2953,6 +2953,92 @@ select.form-input {
 /* Contraste dos nomes dos procedimentos nos cards claros */
 .treatment-card:not([open]) .treatment-card__title { color: var(--color-text-primary); }
 
+
+/* Ajustes pontuais de contraste, destaque da Dra. e consistência tipográfica */
+.value__icon,
+.treatment-card:not([open]) .treatment-card__icon,
+.hero__badge > .icon {
+  color: var(--color-navy);
+}
+
+body,
+button,
+input,
+select,
+textarea,
+.navigation,
+.button,
+.eyebrow,
+.treatment-card__description,
+.value__description,
+.proof-item small {
+  font-family: var(--font-family-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.brand__name,
+.hero__badge strong,
+.value__number,
+.google-rating__score,
+.google-review-card strong,
+.google-review-card__number,
+.google-review-card__quote,
+.treatment-card__title {
+  font-family: var(--font-family-serif);
+}
+
+/* Mais presença para o retrato no topo, preservando a arte inteira. */
+.hero .container {
+  min-height: 700px;
+}
+
+.hero__portrait {
+  height: 670px;
+}
+
+.hero__portrait--art .hero__image {
+  width: min(500px, 100%);
+  height: auto;
+  max-height: 650px;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+@media (max-width: 760px) {
+  .hero .container {
+    min-height: auto;
+  }
+
+  .hero__portrait {
+    height: 430px;
+    margin-top: var(--space-xl);
+  }
+
+  .hero__portrait--art .hero__image {
+    width: min(316px, 100%);
+    height: auto;
+    max-height: 420px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
+@media (max-width: 360px) {
+  .hero__portrait {
+    height: 388px;
+  }
+
+  .hero__portrait--art .hero__image {
+    width: min(288px, 100%);
+    max-height: 380px;
+  }
+}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
