@@ -2783,7 +2783,26 @@ select.form-input {
 }
 
 
-  </style>
+  
+
+/* GOOGLE REVIEWS — social proof + invitation */
+.proof-item--review { color: inherit; text-decoration: none; transition: transform .2s ease, background .2s ease; }
+.proof-item--review:hover { transform: translateY(-2px); background: rgba(255,255,255,.035); }
+.google-rating__wrapper--reviews { grid-template-columns: minmax(0,.85fr) minmax(520px,1.15fr); }
+.google-reviews { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.google-review-card { position:relative; min-height:190px; padding:26px; border:1px solid rgba(199,164,106,.34); border-radius:22px; background:rgba(255,255,255,.72); box-shadow:0 18px 50px rgba(13,27,42,.08); color:var(--color-text-primary); text-decoration:none; }
+.google-review-card strong { display:block; margin:8px 0 10px; font-family:var(--font-family-serif); font-size:25px; font-weight:600; }
+.google-review-card p { margin:0; font-size:14px; line-height:1.65; color:var(--color-text-secondary); }
+.google-review-card__stars { color:var(--color-gold); letter-spacing:.12em; font-size:18px; }
+.google-review-card__number { display:block; color:var(--color-gold); font-family:var(--font-family-serif); font-size:52px; line-height:.95; }
+.google-review-card--cta { grid-column:1 / -1; min-height:auto; background:linear-gradient(135deg,#102b3a,#234d61); color:#fff; }
+.google-review-card--cta strong { color:#fff; }
+.google-review-card--cta p { max-width:650px; color:rgba(255,255,255,.78); }
+.google-review-card__quote { position:absolute; right:24px; top:10px; color:rgba(234,216,181,.34); font-family:var(--font-family-serif); font-size:70px; line-height:1; }
+.google-review-card__link { display:inline-block; margin-top:16px; color:var(--color-gold-light); font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+@media (max-width: 900px) { .google-rating__wrapper--reviews { grid-template-columns:1fr; } .google-reviews { grid-template-columns:1fr; } .google-review-card--cta { grid-column:auto; } }
+
+</style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -2844,10 +2863,10 @@ select.form-input {
     <!-- TRUST STRIP -->
     <section class="proof-strip" aria-label="Destaques da experiência">
       <div class="container proof-strip__grid">
-        <div class="proof-item">
+        <a class="proof-item proof-item--review" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&amp;query=Goreti+Magalhães+Estética+Avançada+Tijuca+Rio+de+Janeiro" aria-label="Avalie sua experiência com a GM Estética Avançada no Google">
           <span class="proof-item__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg></span>
-          <span><strong>4,9 no Google</strong><small>61 avaliações reais</small></span>
-        </div>
+          <span><strong>Avalie sua experiência</strong><small>Conte como foi seu atendimento no Google ↗</small></span>
+        </a>
         <div class="proof-item">
           <span class="proof-item__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
           <span><strong>+15 anos</strong><small>de experiência clínica</small></span>
@@ -2908,22 +2927,34 @@ select.form-input {
     </section>
 
     <!-- GOOGLE RATING SECTION -->
-    <section class="google-rating" id="avaliacoes" role="region" aria-label="Avaliações no Google">
-      <div class="container google-rating__wrapper">
+    <section class="google-rating" id="avaliacoes" role="region" aria-label="Avaliações de pacientes no Google">
+      <div class="container google-rating__wrapper google-rating__wrapper--reviews">
         <div class="google-rating__text">
-          <span class="eyebrow">Experiências que inspiram confiança</span>
-          <h2>Uma nota construída com <em>cuidado.</em></h2>
-          <p>A clínica é avaliada por pacientes que reconhecem a experiência, o acolhimento e a atenção em cada etapa do atendimento.</p>
+          <span class="eyebrow">Experiências compartilhadas por pacientes</span>
+          <h2>Quem vive a experiência <em>conta.</em></h2>
+          <p>As avaliações publicadas no Google ajudam novos pacientes a conhecer o atendimento da GM Estética Avançada antes mesmo da primeira consulta.</p>
           <a class="link-action link-action--featured" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&amp;query=Goreti+Magalhães+Estética+Avançada+Tijuca+Rio+de+Janeiro">
-            Ver avaliações no Google Maps ↗
+            Ler depoimentos no Google Maps ↗
           </a>
         </div>
 
-        <div class="google-rating__panel" aria-label="Nota 4,9 de 5 no Google, com 61 avaliações">
-          <div class="google-rating__score">4,9</div>
-          <div class="google-rating__stars" aria-hidden="true">★★★★★</div>
-          <strong>Google</strong>
-          <span>61 avaliações reais</span>
+        <div class="google-reviews" aria-label="Resumo das avaliações publicadas no Google">
+          <article class="google-review-card">
+            <div class="google-review-card__stars" aria-label="Nota média 4,9 de 5">★★★★★</div>
+            <strong>4,9 de 5 no Google</strong>
+            <p>Nota pública atribuída pelos pacientes à experiência na clínica.</p>
+          </article>
+          <article class="google-review-card">
+            <span class="google-review-card__number">64</span>
+            <strong>avaliações publicadas</strong>
+            <p>Experiências reais compartilhadas no perfil da clínica no Google.</p>
+          </article>
+          <a class="google-review-card google-review-card--cta" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&amp;query=Goreti+Magalhães+Estética+Avançada+Tijuca+Rio+de+Janeiro">
+            <span class="google-review-card__quote">“</span>
+            <strong>Já foi atendida por nós?</strong>
+            <p>Sua experiência também pode ajudar outras mulheres a escolherem seus cuidados com mais confiança.</p>
+            <span class="google-review-card__link">Deixar minha avaliação ↗</span>
+          </a>
         </div>
       </div>
     </section>
