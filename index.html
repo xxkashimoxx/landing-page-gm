@@ -1498,11 +1498,31 @@ section {
 }
 
 .lasersculpting__visual.lasersculpting__visual--application {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1.515 / 1;
+  background-image: url("laser-sculpting-aplicacao-23393.svg");
+  background-position: center;
+  background-size: cover;
+}
+
+.lasersculpting__visual.lasersculpting__visual--application::before {
+  display: block;
+  content: "";
+  position: absolute;
+  inset: -12px;
+  background-image: inherit;
+  background-position: center;
+  background-size: cover;
+  filter: blur(16px) brightness(0.55);
+  transform: scale(1.04);
 }
 
 .lasersculpting__visual--application img {
   object-fit: contain;
+}
+
+.lasersculpting__visual--application .lasersculpting__photo {
+  position: relative;
+  z-index: 1;
 }
 
 .lasersculpting__photo {
