@@ -1,0 +1,218 @@
+/* ============================================================================
+   HERO.CSS - Seção hero principal
+   ========================================================================== */
+
+.hero {
+  background: linear-gradient(122deg, #081522 0%, var(--color-navy) 42%, #24485d 100%);
+  color: var(--color-text-white);
+  overflow: hidden;
+  position: relative;
+}
+
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(4px);
+}
+
+.hero::before {
+  width: 460px;
+  height: 460px;
+  right: -180px;
+  top: -160px;
+  background: radial-gradient(circle, rgba(199, 164, 106, 0.23), transparent 68%);
+}
+
+.hero::after {
+  width: 240px;
+  height: 240px;
+  left: -130px;
+  bottom: -100px;
+  background: radial-gradient(circle, rgba(82, 102, 109, 0.28), transparent 70%);
+}
+
+.hero .container {
+  min-height: 610px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+}
+
+/* HERO CONTENT */
+.hero__content {
+  padding: var(--space-9xl) 0;
+  z-index: 1;
+  max-width: 680px;
+}
+
+.hero__title {
+  font-size: clamp(
+    54px,
+    7vw,
+    var(--font-size-7xl)
+  );
+  margin: var(--space-xl) 0;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--color-gold-light);
+}
+
+.hero__description {
+  max-width: 540px;
+  font-size: var(--font-size-2xl);
+  color: var(--color-ice);
+  margin: 0 0 var(--space-2xl);
+}
+
+/* HERO PORTRAIT */
+.hero__portrait {
+  height: 610px;
+  position: relative;
+  min-width: 0;
+  z-index: 1;
+}
+
+.hero__portrait::before {
+  content: '';
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border: 1px solid rgba(199, 164, 106, 0.72);
+  border-radius: var(--radius-full);
+  right: -40px;
+  top: 80px;
+  z-index: 1;
+}
+
+.hero__portrait::after {
+  content: '';
+  position: absolute;
+  width: 390px;
+  height: 390px;
+  right: 28px;
+  top: 145px;
+  border: 1px solid rgba(234, 216, 181, 0.25);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.hero__image {
+  position: absolute;
+  height: 535px;
+  width: 420px;
+  object-fit: cover;
+  object-position: center 24%;
+  right: 0;
+  bottom: 0;
+  border-radius: 49% 49% 0 0;
+  filter: saturate(0.92) contrast(1.02);
+  border: 1px solid rgba(234, 216, 181, 0.38);
+  box-shadow: 0 24px 48px rgba(3, 12, 20, 0.3);
+  z-index: 2;
+}
+
+/* A arte de apresentação já traz sua própria composição e chamada. */
+.hero__portrait--art .hero__image {
+  object-fit: contain;
+  object-position: center bottom;
+  border-radius: 24px 24px 0 0;
+}
+
+.hero__portrait--art .hero__badge {
+  display: none;
+}
+
+.hero__badge {
+  position: absolute;
+  left: 0;
+  bottom: 78px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 186px;
+  padding: 13px 16px;
+  background: rgba(250, 250, 250, 0.92);
+  color: var(--color-navy);
+  border: 1px solid rgba(199, 164, 106, 0.5);
+  box-shadow: var(--shadow-luxury);
+  backdrop-filter: blur(8px);
+}
+
+.hero__badge > .icon {
+  width: 25px;
+  height: 25px;
+  color: var(--color-gold);
+}
+
+.hero__badge span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero__badge strong {
+  font-family: var(--font-family-serif);
+  font-size: 23px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.hero__badge small {
+  color: var(--color-text-secondary);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* RESPONSIVE */
+@media (max-width: 760px) {
+  .hero .container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__content {
+    padding: var(--space-7xl) 0 0;
+  }
+
+  .hero__description {
+    font-size: 16px;
+  }
+
+  .hero__portrait {
+    height: 380px;
+  }
+
+  .hero__portrait::after {
+    width: 300px;
+    height: 300px;
+    right: 16px;
+    top: 44px;
+  }
+
+  .hero__portrait::before {
+    width: 350px;
+    height: 350px;
+    right: -60px;
+    top: 10px;
+  }
+
+  .hero__image {
+    height: 350px;
+    width: 280px;
+    right: 5%;
+    object-position: center 22%;
+  }
+
+  .hero__badge {
+    left: 3%;
+    bottom: 24px;
+  }
+}

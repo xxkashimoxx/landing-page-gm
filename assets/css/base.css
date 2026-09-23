@@ -1,0 +1,313 @@
+/* ============================================================================
+   BASE.CSS - Estilos globais e componentes base
+   ========================================================================== */
+
+/* CONTAINER & LAYOUT */
+.container {
+  width: min(var(--size-container-max), calc(100% - calc(var(--size-container-padding) * 2)));
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* TYPOGRAPHY UTILITIES */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-md);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-serif);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-tight);
+}
+
+h2 {
+  font-size: clamp(
+    var(--font-size-5xl),
+    4.5vw,
+    var(--font-size-6xl)
+  );
+  margin: var(--space-sm) 0 var(--space-xl);
+}
+
+h3 {
+  font-size: var(--font-size-3xl);
+}
+
+em {
+  font-style: italic;
+  font-weight: inherit;
+}
+
+p {
+  margin: 0;
+  line-height: var(--line-height-normal);
+}
+
+/* BUTTONS */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-2xl);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  min-height: 48px;
+  transition: all var(--transition-base);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-slate);
+  outline-offset: 2px;
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+/* Button Variants */
+.button--primary {
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold));
+  color: var(--color-text-primary);
+  border-color: var(--color-gold);
+  box-shadow: 0 10px 24px rgba(199, 164, 106, 0.24);
+}
+
+.button--primary:hover {
+  background: linear-gradient(135deg, #f1dfbd, #b89151);
+  border-color: var(--color-gold);
+  box-shadow: 0 14px 28px rgba(199, 164, 106, 0.32);
+}
+
+.button--secondary {
+  background-color: transparent;
+  color: var(--color-text-white);
+  border-color: var(--color-gold-light);
+}
+
+.button--secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-text-white);
+}
+
+.button--cta {
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold));
+  color: var(--color-text-primary);
+  border-color: var(--color-gold);
+  box-shadow: 0 8px 20px rgba(199, 164, 106, 0.22);
+}
+
+.button--full {
+  width: 100%;
+}
+
+/* LINK ACTION */
+.link-action {
+  display: inline-block;
+  margin-top: var(--space-lg);
+  color: var(--color-gold);
+  border-bottom: 1px solid currentColor;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 0 0 4px 0;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.link-action:hover {
+  opacity: 0.7;
+}
+
+/* DESTAQUES DE NAVEGAÇÃO */
+.link-action--featured {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  margin-top: var(--space-xl);
+  padding: 14px 22px;
+  border: 1px solid var(--color-gold);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold));
+  color: var(--color-text-primary);
+  box-shadow: 0 12px 26px rgba(199, 164, 106, 0.24);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.07em;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), filter var(--transition-base);
+}
+
+.link-action--featured:hover {
+  opacity: 1;
+  filter: brightness(1.04);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(199, 164, 106, 0.34);
+}
+
+/* BRAND */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  transition: opacity var(--transition-base);
+}
+
+.brand:hover {
+  opacity: 0.8;
+}
+
+.brand__logo {
+  width: auto;
+  height: 54px;
+  max-width: 96px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 9px rgba(199, 164, 106, 0.2));
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand__name {
+  font-family: var(--font-family-serif);
+  font-size: 17px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.04em;
+}
+
+.brand__tagline {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+}
+
+.brand__tagline::before {
+  content: '✦';
+  margin-right: 6px;
+  color: var(--color-gold);
+  font-size: 8px;
+}
+
+/* SECTIONS */
+section {
+  position: relative;
+}
+
+/* GRID & FLEX UTILITIES */
+.grid {
+  display: grid;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-md {
+  gap: var(--space-md);
+}
+
+/* VISUALLY HIDDEN */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* SKIP LINK */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-navy);
+  color: white;
+  padding: var(--space-md) var(--space-lg);
+  z-index: var(--z-tooltip);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* SMOOTHNESS */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Focus Visible States */
+:focus-visible {
+  outline: 2px solid var(--color-slate);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-gold);
+  color: white;
+}
+
+/* INLINE ICONS */
+.icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

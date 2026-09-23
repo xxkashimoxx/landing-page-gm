@@ -1,0 +1,214 @@
+/* ============================================================================
+   TREATMENTS.CSS - Grid de tratamentos
+   ========================================================================== */
+
+.treatments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-xl);
+}
+
+/* TREATMENT CARD */
+.treatment-card {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-background-primary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(13, 27, 42, 0.05);
+}
+
+/* Summary Styling */
+.treatment-card__summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.treatment-card__summary::-webkit-details-marker {
+  display: none;
+}
+
+.treatment-card__media {
+  aspect-ratio: 1.45;
+  overflow: hidden;
+  background: var(--color-background-highlight);
+}
+
+.treatment-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow), filter var(--transition-slow);
+}
+
+.treatment-card:hover .treatment-card__media img {
+  transform: scale(1.04);
+  filter: saturate(0.92);
+}
+
+.treatment-card__body {
+  padding: var(--space-2xl);
+  background: linear-gradient(180deg, rgba(238, 244, 247, 0.98), rgba(214, 226, 234, 0.94));
+}
+
+.treatment-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  min-height: 34px;
+}
+
+.treatment-card__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--color-gold);
+  background: var(--color-champagne);
+  border: 1px solid rgba(199, 164, 106, 0.48);
+  border-radius: 50%;
+  flex: 0 0 34px;
+}
+
+.treatment-card__icon .icon {
+  width: 17px;
+  height: 17px;
+}
+
+.treatment-card__number {
+  display: block;
+  color: #7590a8;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.12em;
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.treatment-card__title {
+  font-size: clamp(26px, 2.5vw, 34px);
+  margin: 0 0 var(--space-sm);
+  transition: color var(--transition-base);
+}
+
+.treatment-card__description {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0;
+  transition: color var(--transition-base);
+}
+
+/* Hover State */
+.treatment-card:hover {
+  background-color: var(--color-paper);
+  border-color: rgba(199, 164, 106, 0.62);
+  box-shadow: var(--shadow-luxury);
+  transform: translateY(-3px);
+}
+
+/* Open/Expanded State */
+.treatment-card[open] {
+  background-color: var(--color-background-highlight);
+  color: var(--color-text-white);
+  border-color: rgba(234, 216, 181, 0.65);
+}
+
+.treatment-card[open] .treatment-card__body {
+  background: transparent;
+}
+
+.treatment-card[open] .treatment-card__icon {
+  background: rgba(234, 216, 181, 0.14);
+  border-color: rgba(234, 216, 181, 0.55);
+  color: var(--color-gold-light);
+}
+
+.treatment-card[open] .treatment-card__description {
+  color: var(--color-ice);
+}
+
+.treatment-card[open] .treatment-card__title {
+  color: var(--color-text-white);
+}
+
+.treatment-card[open] .treatment-card__media img {
+  filter: saturate(0.78) brightness(0.78);
+}
+
+.treatment-card[open] p {
+  color: var(--color-ice);
+}
+
+/* Content */
+.treatment-card__content {
+  margin: 0 var(--space-2xl) var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid currentColor;
+  opacity: 0;
+  animation: slideDown 200ms ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.treatment-card__content p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  margin: 0 0 var(--space-lg);
+}
+
+.treatment-card__content .link-action {
+  margin-top: 0;
+  color: inherit;
+  border-bottom-color: currentColor;
+}
+
+/* RESPONSIVE - Mobile */
+@media (max-width: 760px) {
+  .treatments-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .treatment-card {
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+  }
+
+  .treatment-card__media {
+    aspect-ratio: 1.7;
+  }
+
+  .treatment-card__body {
+    padding: var(--space-xl);
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1024px) {
+  .treatments-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Animation for opening cards */
+@media (prefers-reduced-motion: no-preference) {
+  .treatment-card {
+    transition: all 150ms ease-out;
+  }
+}
+

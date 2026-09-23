@@ -1,0 +1,96 @@
+/* ============================================================================
+   FOOTER.CSS - Rodapé e WhatsApp button
+   ========================================================================== */
+
+.footer {
+  background: linear-gradient(135deg, #081522, #102b3b);
+  color: var(--color-ice);
+  padding: var(--space-2xl) 0 var(--space-9xl);
+}
+
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-xl);
+  font-size: var(--font-size-sm);
+}
+
+.footer__text {
+  display: block;
+}
+
+/* FOOTER BRAND */
+.footer .brand {
+  flex-shrink: 0;
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-button {
+  position: fixed;
+  z-index: var(--z-fixed);
+  right: 22px;
+  bottom: 22px;
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-full);
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--color-whatsapp), var(--color-whatsapp-dark));
+  color: white;
+  font-size: 28px;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: all var(--transition-base);
+  line-height: 1;
+  border: 2px solid transparent;
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.whatsapp-button .icon {
+  width: 25px;
+  height: 25px;
+  fill: currentColor;
+  stroke: none;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 40px rgba(32, 150, 80, 0.3);
+}
+
+.whatsapp-button:focus-visible {
+  outline: 2px solid var(--color-slate);
+  outline-offset: 2px;
+}
+
+.whatsapp-button:active {
+  transform: scale(0.95);
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-button {
+    transition: none;
+  }
+
+  .whatsapp-button:hover {
+    transform: none;
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 760px) {
+  .footer__content {
+    display: block;
+  }
+
+  .footer .brand {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .footer__text {
+    display: block;
+    margin-top: var(--space-sm);
+  }
+}

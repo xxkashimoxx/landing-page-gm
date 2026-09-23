@@ -1,0 +1,228 @@
+/* ============================================================================
+   RESET.CSS - Normalização e reset de estilos
+   ========================================================================== */
+
+/* Inheritance */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+main {
+  display: block;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-tight);
+}
+
+p {
+  margin: 0;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: inherit;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-slate);
+  outline-offset: 2px;
+}
+
+/* Buttons */
+button {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-slate);
+  outline-offset: 2px;
+}
+
+/* Forms */
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  appearance: none;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+}
+
+/* Remove default select arrow */
+select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right var(--space-md) center;
+  background-size: 20px;
+  padding-right: 40px;
+}
+
+/* Lists */
+ol,
+ul {
+  list-style: none;
+}
+
+li {
+  list-style: none;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+svg {
+  display: block;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+
+/* Quotes */
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none;
+}
+
+/* Horizontal Rules */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-lg) 0;
+  padding: 0;
+}
+
+/* Details/Summary */
+details {
+  cursor: pointer;
+}
+
+summary {
+  cursor: pointer;
+  display: list-item;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Accessibility */
+[hidden] {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
