@@ -1489,6 +1489,23 @@ section {
   object-position: center;
 }
 
+/* Fotos do procedimento e do resultado em sequência na mesma coluna. */
+.lasersculpting__sequence {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+  padding: 32px 0;
+}
+
+.lasersculpting__visual--application {
+  aspect-ratio: 9 / 10;
+}
+
+.lasersculpting__visual--application img {
+  object-fit: cover;
+  object-position: center 28%;
+}
+
 
 
 .lasersculpting__visual::before {
@@ -3079,8 +3096,13 @@ select.form-input {
             Avaliar meu caso ↗
           </button>
         </div>
-        <div class="lasersculpting__visual">
-          <img src="assets/generated/inline-3.jpg" alt="Resultado de Laser Sculpting no contorno corporal" loading="lazy">
+        <div class="lasersculpting__sequence">
+          <div class="lasersculpting__visual lasersculpting__visual--application">
+            <img src="laser-sculpting-aplicacao-23380.svg" alt="Aplicação do Laser Sculpting no contorno abdominal" loading="lazy" decoding="async">
+          </div>
+          <div class="lasersculpting__visual">
+            <img src="assets/generated/inline-3.jpg" alt="Resultado de Laser Sculpting no contorno corporal" loading="lazy">
+          </div>
         </div>
       </div>
     </section>
