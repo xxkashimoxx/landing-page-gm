@@ -3117,6 +3117,60 @@ h6,
   }
 }
 
+/* Preferências de cookies e rastreamento opcional */
+.cookie-consent {
+  position: fixed;
+  z-index: 1200;
+  left: 50%;
+  bottom: 104px;
+  transform: translateX(-50%);
+  width: min(760px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px;
+  color: #f4f6f8;
+  background: #0c1b2b;
+  border: 1px solid rgba(234, 216, 181, 0.55);
+  border-radius: 16px;
+  box-shadow: 0 16px 44px rgba(4, 14, 25, 0.35);
+}
+
+.cookie-consent[hidden] { display: none; }
+.cookie-consent__copy { flex: 1 1 360px; }
+.cookie-consent__title { margin: 0 0 5px; color: #ead8b5; font-family: Inter, sans-serif; font-size: 14px; font-weight: 600; }
+.cookie-consent__text { margin: 0; color: #d7e0e8; font: 13px/1.55 Inter, sans-serif; }
+.cookie-consent__actions { display: flex; flex: 0 0 auto; gap: 8px; }
+.cookie-consent__button {
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid #ead8b5;
+  border-radius: 999px;
+  color: #0c1b2b;
+  background: #ead8b5;
+  font: 600 12px/1.2 Inter, sans-serif;
+  cursor: pointer;
+}
+.cookie-consent__button--secondary { color: #f4f6f8; background: transparent; }
+.cookie-consent__button:focus-visible, .cookie-preferences-link:focus-visible { outline: 3px solid #f2d47c; outline-offset: 3px; }
+.cookie-preferences-link {
+  padding: 0;
+  border: 0;
+  color: #ead8b5;
+  background: none;
+  font: 500 12px/1.5 Inter, sans-serif;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .cookie-consent { bottom: 96px; align-items: stretch; flex-direction: column; gap: 12px; padding: 16px; }
+  .cookie-consent__actions { width: 100%; }
+  .cookie-consent__button { flex: 1 1 0; padding: 10px 8px; }
+}
+
 </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3650,8 +3704,21 @@ h6,
         </div>
       </a>
       <span class="footer__text">Ciência, experiência e resultados naturais.</span>
+      <button class="cookie-preferences-link" type="button" onclick="openCookiePreferences()">Preferências de cookies</button>
     </div>
   </footer>
+
+  <!-- CONSENTIMENTO PARA RASTREAMENTO DE MARKETING -->
+  <section class="cookie-consent" id="cookieConsent" role="region" aria-label="Preferências de cookies" hidden>
+    <div class="cookie-consent__copy">
+      <h2 class="cookie-consent__title">Sua privacidade importa</h2>
+      <p class="cookie-consent__text">Com sua autorização, usamos o Pixel da Meta para medir visitas e interações das campanhas. Você pode aceitar ou recusar essa medição; o site funciona nos dois casos.</p>
+    </div>
+    <div class="cookie-consent__actions">
+      <button class="cookie-consent__button cookie-consent__button--secondary" type="button" onclick="saveMetaConsent('denied')">Recusar</button>
+      <button class="cookie-consent__button" type="button" onclick="saveMetaConsent('granted')">Aceitar medição</button>
+    </div>
+  </section>
 
   <!-- WHATSAPP BUTTON -->
   <a 
@@ -4357,6 +4424,7 @@ if (bookingForm) {
     }
 
     // Marca como enviado
+    if (window.gmMetaTrack) window.gmMetaTrack('Lead');
     bookingForm.classList.add('sent');
     formLogger.log('Formulário marcado como enviado');
 
@@ -4487,6 +4555,70 @@ if (bookingForm) {
 formLogger.log('Form controller inicializado');
 
 
+  </script>
+  <script>
+    (() => {
+      const pixelId = '2252831085494243';
+      const consentKey = 'gm-meta-pixel-consent';
+      const banner = document.getElementById('cookieConsent');
+
+      function getConsent() {
+        try { return localStorage.getItem(consentKey); } catch (_) { return null; }
+      }
+
+      function loadPixel() {
+        if (window.fbq) return;
+        !function(f,b,e,v,n,t,s) {
+          if (f.fbq) return;
+          n = f.fbq = function() { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+          if (!f._fbq) f._fbq = n;
+          n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+          t = b.createElement(e); t.async = true; t.src = v;
+          s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        window.fbq('init', pixelId);
+        window.fbq('track', 'PageView');
+      }
+
+      function clearMetaCookies() {
+        ['_fbp', '_fbc'].forEach(name => {
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax`;
+        });
+      }
+
+      window.gmMetaTrack = (eventName, parameters) => {
+        if (getConsent() === 'granted' && typeof window.fbq === 'function') {
+          window.fbq('track', eventName, parameters || {});
+        }
+      };
+
+      window.saveMetaConsent = value => {
+        try { localStorage.setItem(consentKey, value); } catch (_) {}
+        if (banner) banner.hidden = true;
+        if (value === 'granted') {
+          if (typeof window.fbq === 'function') {
+            window.fbq('consent', 'grant');
+            window.fbq('track', 'PageView');
+          } else {
+            loadPixel();
+          }
+        } else {
+          if (typeof window.fbq === 'function') window.fbq('consent', 'revoke');
+          clearMetaCookies();
+        }
+      };
+
+      window.openCookiePreferences = () => {
+        if (banner) banner.hidden = false;
+      };
+
+      if (getConsent() === 'granted') loadPixel();
+      else if (banner) banner.hidden = false;
+
+      document.querySelector('.whatsapp-button')?.addEventListener('click', () => {
+        window.gmMetaTrack('Contact');
+      });
+    })();
   </script>
 </body>
 </html>
