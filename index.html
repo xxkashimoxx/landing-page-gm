@@ -4651,8 +4651,11 @@ formLogger.log('Form controller inicializado');
         const href = target.getAttribute('href') || '';
         if (target.classList.contains('whatsapp-button') || href.includes('wa.me')) {
           track('whatsapp_click', 'whatsapp');
-        } else if ((target.getAttribute('onclick') || '').includes('openBooking') || target.hasAttribute('data-analytics-cta')) {
-          const label = target.getAttribute('data-analytics-cta') || target.textContent || 'cta';
+        } else if (
+          target.tagName === 'A' ||
+          (inlineAction.includes('openBooking') || target.hasAttribute('data-analytics-cta'))
+        ) {
+          const label = target.getAttribute('data-analytics-cta') || target.textContent || 'link';
           track('cta_click', label);
         }
       });
