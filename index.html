@@ -3712,7 +3712,7 @@ h6,
   <section class="cookie-consent" id="cookieConsent" role="region" aria-label="Preferências de cookies" hidden>
     <div class="cookie-consent__copy">
       <h2 class="cookie-consent__title">Sua privacidade importa</h2>
-      <p class="cookie-consent__text">Com sua autorização, usamos o Pixel da Meta para medir visitas e interações das campanhas. Você pode aceitar ou recusar essa medição; o site funciona nos dois casos.</p>
+      <p class="cookie-consent__text">Com sua autorização, usamos o Pixel da Meta e métricas anônimas da clínica para acompanhar acessos e interações. Você pode aceitar ou recusar essa medição; o site funciona nos dois casos.</p>
     </div>
     <div class="cookie-consent__actions">
       <button class="cookie-consent__button cookie-consent__button--secondary" type="button" onclick="saveMetaConsent('denied')">Recusar</button>
@@ -4625,6 +4625,9 @@ formLogger.log('Form controller inicializado');
     (() => {
       const endpoint = 'https://btmbtnsoszsypuvongzq.supabase.co/functions/v1/landing-analytics';
       const track = (eventType, ctaName) => {
+        try {
+          if (localStorage.getItem('gm-meta-pixel-consent') !== 'granted') return;
+        } catch (_) { return; }
         const pagePath = (window.location.pathname || '/').replace(/[^A-Za-z0-9/_-]/g, '').slice(0, 200) || '/';
         const safeName = (ctaName || 'cta').replace(/[^A-Za-z0-9 _-]/g, '').trim().slice(0, 64) || 'cta';
         fetch(endpoint, {
@@ -4640,6 +4643,11 @@ formLogger.log('Form controller inicializado');
       document.addEventListener('click', (event) => {
         const target = event.target instanceof Element ? event.target.closest('a, button') : null;
         if (!target) return;
+        const inlineAction = target.getAttribute('onclick') || '';
+        if (inlineAction.includes("saveMetaConsent('granted')")) {
+          setTimeout(() => track('page_view', 'page'), 0);
+          return;
+        }
         const href = target.getAttribute('href') || '';
         if (target.classList.contains('whatsapp-button') || href.includes('wa.me')) {
           track('whatsapp_click', 'whatsapp');
