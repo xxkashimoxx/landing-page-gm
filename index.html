@@ -8,6 +8,33 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-MD83SWVS');</script>
   <!-- End Google Tag Manager -->
+  <!-- Google tag (Google Ads) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10870205102"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-10870205102');
+
+    function gtag_report_conversion(url) {
+      var navigated = false;
+      var navigate = function () {
+        if (url && !navigated) {
+          navigated = true;
+          window.location.href = url;
+        }
+      };
+      if (url) window.setTimeout(navigate, 1500);
+      gtag('event', 'conversion', {
+        'send_to': 'AW-10870205102/JkIRCM_b1pUdEK7VqL8o',
+        'value': 1.0,
+        'currency': 'BRL',
+        'event_callback': navigate,
+        'event_timeout': 1500
+      });
+      return false;
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Dra. Goreti Magalhães — estética avançada com cuidado e naturalidade.">
@@ -4410,8 +4437,8 @@ function redirectToWhatsApp(message) {
   
   formLogger.log('Redirecionando para WhatsApp');
   
-  // Usa window.location para maior compatibilidade
-  window.location.href = whatsappUrl;
+  // Registra o contato antes de sair da página; há fallback se a tag for bloqueada.
+  gtag_report_conversion(whatsappUrl);
 }
 
 /**
@@ -4628,6 +4655,8 @@ formLogger.log('Form controller inicializado');
 
       document.querySelector('.whatsapp-button')?.addEventListener('click', () => {
         window.gmMetaTrack('Contact');
+        // O link abre em outra aba; o evento é enviado sem interromper o clique.
+        gtag_report_conversion();
       });
     })();
   </script>
