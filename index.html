@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10870205102"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-10870205102');
-  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MD83SWVS');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Dra. Goreti Magalhães — estética avançada com cuidado e naturalidade.">
@@ -16,7 +15,7 @@
   <meta property="og:title" content="Goreti Magalhães | Estética Avançada">
   <meta property="og:description" content="Estética com intenção, cuidado pensado para valorizar seus traços e sua história.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://landing-page-gm-two.vercel.app">
+  <meta property="og:url" content="https://gmesteticalanding.vercel.app">
   <meta name="theme-color" content="#0d1b2a">
   
   <title>Goreti Magalhães | Estética Avançada</title>
@@ -3185,6 +3184,10 @@ h6,
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD83SWVS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <!-- HEADER -->
   <header class="header" role="banner">
     <div class="header__container">
@@ -3720,7 +3723,7 @@ h6,
   <section class="cookie-consent" id="cookieConsent" role="region" aria-label="Preferências de cookies" hidden>
     <div class="cookie-consent__copy">
       <h2 class="cookie-consent__title">Sua privacidade importa</h2>
-      <p class="cookie-consent__text">Com sua autorização, usamos o Pixel da Meta e métricas anônimas da clínica para acompanhar acessos e interações. Você pode aceitar ou recusar essa medição; o site funciona nos dois casos.</p>
+      <p class="cookie-consent__text">Com sua autorização, usamos o Pixel da Meta para medir visitas e interações das campanhas. Você pode aceitar ou recusar essa medição; o site funciona nos dois casos.</p>
     </div>
     <div class="cookie-consent__actions">
       <button class="cookie-consent__button cookie-consent__button--secondary" type="button" onclick="saveMetaConsent('denied')">Recusar</button>
@@ -4433,7 +4436,6 @@ if (bookingForm) {
 
     // Marca como enviado
     if (window.gmMetaTrack) window.gmMetaTrack('Lead');
-    window.gmLandingTrack('booking_request', 'booking_form');
     bookingForm.classList.add('sent');
     formLogger.log('Formulário marcado como enviado');
 
@@ -4626,46 +4628,6 @@ formLogger.log('Form controller inicializado');
 
       document.querySelector('.whatsapp-button')?.addEventListener('click', () => {
         window.gmMetaTrack('Contact');
-      });
-    })();
-  </script>
-  <script>
-    (() => {
-      const endpoint = 'https://btmbtnsoszsypuvongzq.supabase.co/functions/v1/landing-analytics';
-      const track = (eventType, ctaName) => {
-        try {
-          if (localStorage.getItem('gm-meta-pixel-consent') !== 'granted') return;
-        } catch (_) { return; }
-        const pagePath = (window.location.pathname || '/').replace(/[^A-Za-z0-9/_-]/g, '').slice(0, 200) || '/';
-        const safeName = (ctaName || 'cta').replace(/[^A-Za-z0-9 _-]/g, '').trim().slice(0, 64) || 'cta';
-        fetch(endpoint, {
-          method: 'POST',
-          mode: 'cors',
-          keepalive: true,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ event_type: eventType, page_path: pagePath, cta_name: safeName })
-        }).catch(() => {});
-      };
-      window.gmLandingTrack = track;
-      track('page_view', 'page');
-      document.addEventListener('click', (event) => {
-        const target = event.target instanceof Element ? event.target.closest('a, button') : null;
-        if (!target) return;
-        const inlineAction = target.getAttribute('onclick') || '';
-        if (inlineAction.includes("saveMetaConsent('granted')")) {
-          setTimeout(() => track('page_view', 'page'), 0);
-          return;
-        }
-        const href = target.getAttribute('href') || '';
-        if (target.classList.contains('whatsapp-button') || href.includes('wa.me')) {
-          track('whatsapp_click', 'whatsapp');
-        } else if (
-          target.tagName === 'A' ||
-          (inlineAction.includes('openBooking') || target.hasAttribute('data-analytics-cta'))
-        ) {
-          const label = target.getAttribute('data-analytics-cta') || target.textContent || 'link';
-          track('cta_click', label);
-        }
       });
     })();
   </script>
